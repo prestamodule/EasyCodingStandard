@@ -1,0 +1,44 @@
+parameters:
+  exclude_files:
+      - 'index.php'
+      - 'translations/*'
+      - 'views/*'
+      - 'sql/*'
+      - 'upgrade/*'
+
+  sets:
+      - 'symfony'
+      - 'clean-code'
+
+  skip:
+      PhpCsFixer\Fixer\Phpdoc\PhpdocAnnotationWithoutDotFixer: ~
+      PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer: ~
+      PhpCsFixer\Fixer\Phpdoc\PhpdocSeparationFixer: ~
+      PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
+      PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSniff.PrivateNoUnderscore: ~
+      PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer: ~
+      PhpCsFixer\Fixer\Strict\StrictParamFixer: ~
+      PhpCsFixer\Fixer\Strict\StrictComparisonFixer: ~
+      PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer: ~
+      PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer: ~
+      PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\ValidClassNameSniff.NotCamelCaps: ~
+
+services:
+    PhpCsFixer\Fixer\Import\OrderedImportsFixer:
+        sort_algorithm: length
+    PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
+        spacing: one
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff:
+        spacing: 0
+    # use long array syntax
+    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
+        syntax: long
+    PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer:
+        equal: false
+        identical: false
+        less_and_greater: false
+    # $value = (  type ) ...;
+    PhpCsFixer\Fixer\CastNotation\CastSpacesFixer:
+        space: none
+    PhpCsFixer\Fixer\ArrayNotation\TrailingCommaInMultilineArrayFixer: ~
+    PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer: ~
